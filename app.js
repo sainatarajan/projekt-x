@@ -3,6 +3,7 @@ const express= require('express')
 const mongodb= require('mongodb')
 const bodyParser = require('body-parser')
 const MongoClient= mongodb.MongoClient
+const ObjectID= mongodb.ObjectID
 const port= process.env.PORT || 5000
 
 //const databaseURL= 'mongodb://127.0.0.1:27017'
@@ -28,8 +29,30 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.post('/getswitchvalue', (req, res) => {
+    console.log(req)
+    var id= new ObjectID(req.body.id.toString())
+    MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
+        if(error) {
+            console.log('Unable to connect to database')
+            return console.log('Error : '+error)
+        }        
+
+        const db= client.db(databseName)
+        db.collection('users').findOne({_id: id}, (error, user) => {
+            console.log(user)
+            var value= user.switch
+            return res.send(value.toString())
+        })
+    })
+})
+
 app.post('/login', (req, res) => {
     res.sendFile('./login.html')
+})
+
+app.post('/dashboard', (req, res) => {
+    res.sendFile('./dashboard.html')
 })
 
 app.post('/validateUser', (req, res) => {
@@ -56,10 +79,29 @@ app.post('/validateUser', (req, res) => {
     })
 })
 
+app.post('/activate', (req, res) => {
+    var username= req.body.username
+    MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
+        if(error) {
+            console.log('Unable to connect to database')
+            return console.log('Error : '+error)
+        }        
+
+        const db= client.db(databseName)
+        const updatePromise= db.collection('users').updateOne({name: username}, {
+            $inc: {switch: 1}
+        }).then((result) => {
+            return res.send("activated")
+        }).catch((error) => {
+            return res.send("Error")
+        })
+    })
+})
+
 app.get('*', function(req, res){
     res.sendFile('error.html', {root: pathDir});
 });
 
 app.listen(port, () => {
-    console.log("Server is up on port 3000")
+    console.log("Server is up on port "+port)
 })
