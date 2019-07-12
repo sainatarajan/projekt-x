@@ -29,24 +29,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post('/getswitchvalue', (req, res) => {
-    console.log(req)
-    var id= new ObjectID(req.body)
-    MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
-        if(error) {
-            console.log('Unable to connect to database')
-            return console.log('Error : '+error)
-        }        
-
-        const db= client.db(databseName)
-        db.collection('users').findOne({_id: id}, (error, user) => {
-            console.log(user)
-            var value= user.switch
-            return res.send(value.toString())
-        })
-    })
-})
-
 app.post('/login', (req, res) => {
     res.sendFile('./login.html')
 })
@@ -96,6 +78,25 @@ app.post('/activate', (req, res) => {
             return res.send("Error")
         })
     })
+})
+
+app.post('/getswitchvalue', (req, res) => {
+    console.log(req.body)
+    res.send('0')
+    // var username= req.body
+    // MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
+    //     if(error) {
+    //         console.log('Unable to connect to database')
+    //         return console.log('Error : '+error)
+    //     }        
+
+    //     const db= client.db(databseName)
+    //     db.collection('users').findOne({name: username}, (error, user) => {
+    //         console.log(user)
+    //         var value= user.switch
+    //         return res.send(value.toString())
+    //     })
+    // })
 })
 
 app.get('*', function(req, res){
