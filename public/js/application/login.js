@@ -22,6 +22,8 @@ function checkUserParameters(username, password) {
         success: function (data) {
             if(data === "invalid")
                 $('#response').text("Sign in attempt failed. Invalid User.")
+            else
+                $('#response').text("Sign in attempt successful. User Validated.")
         }
     })
 }
