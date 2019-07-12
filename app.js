@@ -81,22 +81,20 @@ app.post('/activate', (req, res) => {
 })
 
 app.post('/getswitchvalue', (req, res) => {
-    console.log(req.body.name)
-    //res.send('0')
-    // var username= req.body
-    // MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
-    //     if(error) {
-    //         console.log('Unable to connect to database')
-    //         return console.log('Error : '+error)
-    //     }        
+    var username= req.body.name
+    MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
+        if(error) {
+            console.log('Unable to connect to database')
+            return console.log('Error : '+error)
+        }        
 
-    //     const db= client.db(databseName)
-    //     db.collection('users').findOne({name: username}, (error, user) => {
-    //         console.log(user)
-    //         var value= user.switch
-    //         return res.send(value.toString())
-    //     })
-    // })
+        const db= client.db(databseName)
+        db.collection('users').findOne({name: username}, (error, user) => {
+            console.log(user)
+            var value= user.switch
+            return res.send(value.toString())
+        })
+    })
 })
 
 app.get('*', function(req, res){
