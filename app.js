@@ -3,17 +3,13 @@ const express= require('express')
 const mongodb= require('mongodb')
 const bodyParser = require('body-parser')
 const MongoClient= mongodb.MongoClient
-const ObjectID= mongodb.ObjectID
 const port= process.env.PORT || 5000
 
-//const databaseURL= 'mongodb://127.0.0.1:27017'
-const uname1= 'sainatarajan'
-const pass1= 'we5Fw3AKA1gsHZWu'
-const uname2= 'public'
-const pass2= '4dnKaAlS0lNDYBKb'
-const databaseURL= 'mongodb+srv://'+uname1+':'+pass1+'@cluster0-pxh0h.mongodb.net/test?retryWrites=true&w=majority'
-const databseName= 'projektx'
-
+// const uname1= 'sainatarajan'
+// const pass1= 'we5Fw3AKA1gsHZWu'
+// const databaseURL= 'mongodb+srv://'+uname1+':'+pass1+'@cluster0-pxh0h.mongodb.net/test?retryWrites=true&w=majority'
+// const databseName= 'projektx'
+const mongoUtil= require('./js/application/mongoutils.js')
 const app= express()
 const pathDir= path.join(__dirname, './public')
 console.log(pathDir)
