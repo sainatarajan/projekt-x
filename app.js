@@ -13,7 +13,7 @@ const databaseURL= 'mongodb+srv://'+uname1+':'+pass1+'@cluster0-pxh0h.mongodb.ne
 const databseName= 'projektx'
 
 const app= express()
-const pathDir= path.join(__dirname, '../public')
+const pathDir= path.join(__dirname, './public')
 console.log(pathDir)
 
 app.use(express.static(pathDir))
