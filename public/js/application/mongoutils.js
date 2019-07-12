@@ -9,7 +9,7 @@ var _db;
 module.exports = {
   connectToServer: function( callback ) {
     MongoClient.connect( databaseURL,  { useNewUrlParser: true }, function( err, client ) {
-      _db  = client.db('test_db');
+      _db  = client.db(databseName);
       return callback( err );
     } );
   },
