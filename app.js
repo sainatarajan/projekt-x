@@ -91,7 +91,7 @@ app.post('/getswitchvalue', (req, res) => {
         const db= client.db(databseName)
         db.collection('users').findOne({name: username}, (error, user) => {
             console.log(user)
-            var value= user.switch
+            var value= user.switch%2
             return res.send(value.toString())
         })
     })
