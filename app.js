@@ -3,6 +3,7 @@ const express= require('express')
 const mongodb= require('mongodb')
 const bodyParser = require('body-parser')
 const MongoClient= mongodb.MongoClient
+const port= process.env.PORT || 5000
 
 //const databaseURL= 'mongodb://127.0.0.1:27017'
 const uname1= 'sainatarajan'
@@ -59,6 +60,6 @@ app.get('*', function(req, res){
     res.sendFile('error.html', {root: pathDir});
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("Server is up on port 3000")
 })
