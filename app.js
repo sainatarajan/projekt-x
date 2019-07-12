@@ -54,7 +54,7 @@ app.post('/validateUser', (req, res) => {
                return console.log('Unable to fetch the data')
             }
             else if(user)
-                return res.redirect("/dashboard")
+                return res.send("valid")
             else
                 return res.send("invalid")
         })
