@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 
 app.post('/getswitchvalue', (req, res) => {
     console.log(req)
-    var id= new ObjectID(req.body.id.toString())
+    var id= new ObjectID(req.body)
     MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
         if(error) {
             console.log('Unable to connect to database')
