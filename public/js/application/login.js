@@ -21,11 +21,12 @@ function checkUserParameters(username, password) {
         data: {username, password},
         success: function (data) {
             if(data === "invalid") {
+                swal("Invalid user.")
+            }
+            else {
                 $('form').unbind('submit');
                 $('form').submit()
             }
-            else
-                swal("Sign in attempt successful. User Validated.")
         }
     })
 }
