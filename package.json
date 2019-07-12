@@ -10,7 +10,7 @@
     "mongodb": "^3.2.7"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node src/app.js"
   },
   "devDependencies": {},
   "description": ""
