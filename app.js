@@ -81,8 +81,8 @@ app.post('/activate', (req, res) => {
 })
 
 app.post('/getswitchvalue', (req, res) => {
-    console.log(req.body)
-    res.send('0')
+    console.log(req.body.name)
+    //res.send('0')
     // var username= req.body
     // MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
     //     if(error) {
