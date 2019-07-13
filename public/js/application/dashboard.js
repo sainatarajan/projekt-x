@@ -12,9 +12,9 @@ function activate() {
         data: {username},
         success: function (data) {
             if(data === "activated")
-                swal("Action activated")
+                console.log("Action activated")
             else
-                swal("Error in activating bulb")
+                console.log("Error in activating bulb")
         }
     })
 }
