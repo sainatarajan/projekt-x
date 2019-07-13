@@ -1,19 +1,11 @@
 const path= require('path')
 const express= require('express')
-const mongodb= require('mongodb')
 const bodyParser = require('body-parser')
-const MongoClient= mongodb.MongoClient
 const port= process.env.PORT || 5000
-
-// const uname1= 'sainatarajan'
-// const pass1= 'we5Fw3AKA1gsHZWu'
-// const databaseURL= 'mongodb+srv://'+uname1+':'+pass1+'@cluster0-pxh0h.mongodb.net/test?retryWrites=true&w=majority'
-// const databseName= 'projektx'
 
 const mongoUtil= require('./public/js/application/mongoutils.js')
 const app= express()
 const pathDir= path.join(__dirname, './public')
-console.log(pathDir)
 
 app.use(express.static(pathDir))
 app.use(bodyParser.urlencoded({extended: true}));
@@ -42,28 +34,8 @@ app.post('/dashboard', (req, res) => {
 app.post('/validateUser', (req, res) => {
     var username=req.body.username;
     var password=req.body.password;
-
-    // MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
-    //     if(error) {
-    //         console.log('Unable to connect to database')
-    //         return console.log('Error : '+error)
-    //     }        
-
-    //     const db= client.db(databseName)
-    //     db.collection('users').findOne({name: username, password: password}, (error, user) => {
-    //         console.log(user)
-    //         if(error) {
-    //            return console.log('Unable to fetch the data')
-    //         }
-    //         else if(user)
-    //             return res.send("valid")
-    //         else
-    //             return res.send("invalid")
-    //     })
-    // })
     const db= mongoUtil.getDb();
     db.collection('users').findOne({name: username, password: password}, (error, user) => {
-        console.log(user)
         if(error) {
             return console.log('Unable to fetch the data')
         }
@@ -76,21 +48,6 @@ app.post('/validateUser', (req, res) => {
 
 app.post('/activate', (req, res) => {
     var username= req.body.username
-    // MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
-    //     if(error) {
-    //         console.log('Unable to connect to database')
-    //         return console.log('Error : '+error)
-    //     }        
-
-    //     const db= client.db(databseName)
-    //     const updatePromise= db.collection('users').updateOne({name: username}, {
-    //         $inc: {switch: 1}
-    //     }).then((result) => {
-    //         return res.send("activated")
-    //     }).catch((error) => {
-    //         return res.send("Error")
-    //     })
-    // })
     const db= mongoUtil.getDb();
     const updatePromise= db.collection('users').updateOne({name: username}, {
             $inc: {switch: 1}
@@ -103,22 +60,8 @@ app.post('/activate', (req, res) => {
 
 app.post('/getswitchvalue', (req, res) => {
     var username= req.body.name
-    // MongoClient.connect(databaseURL, {useNewUrlParser: true}, (error, client) => {
-    //     if(error) {
-    //         console.log('Unable to connect to database')
-    //         return console.log('Error : '+error)
-    //     }        
-
-    //     const db= client.db(databseName)
-    //     db.collection('users').findOne({name: username}, (error, user) => {
-    //         console.log(user)
-    //         var value= user.switch%2
-    //         return res.send(value.toString())
-    //     })
-    // })
     const db= mongoUtil.getDb();
     db.collection('users').findOne({name: username}, (error, user) => {
-        console.log(user)
         var value= user.switch%2
         return res.send(value.toString())
     })
