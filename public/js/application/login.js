@@ -5,20 +5,18 @@ function init() {
 }
 
 function formHandler(e) {
-    var username= $('#username').val()
+    var email= $('#email').val()
     var password= $('#password').val()
 
-    console.log(username)
-    console.log(password)
-    checkUserParameters(username, password)
+    checkUserParameters(email, password)
     e.preventDefault()
 }
 
-function checkUserParameters(username, password) {
+function checkUserParameters(email, password) {
     $.ajax({
         url: '/validateUser',
         type: 'post',
-        data: {username, password},
+        data: {email, password},
         success: function (data) {
             if(data === "invalid") {
                 swal("Invalid user.")

@@ -6,10 +6,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.16.2",
     "mongodb": "^3.2.7",
-    "sweetalert": "^2.1.2"
+    "nodemailer": "^6.3.0",
+    "sweetalert": "^2.1.2",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "node app.js"
