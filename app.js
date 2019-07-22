@@ -112,6 +112,17 @@ app.post('/validateUser', (req, res) => {
     })
 })
 
+app.post('/deviceState', (req, res) => {
+    const deviceID= req.body.deviceID
+    console.log('Device with device ID: '+deviceID+' connected')
+    const db= mongoUtil.getDb()
+
+    db.collection('devices').find({device_id: deviceID}).toArray((err, result) => {
+        const pinValues= result[0].device_pin_values
+        return res.send(pinValues)
+    })
+})
+
 app.post('/userState', async (req, res) => {
     var userID =req.body.userID
     const db = mongoUtil.getDb();
@@ -140,17 +151,6 @@ app.post('/register', (req, res) => {
         else {
             registerUser(email, password)
         }
-    })
-})
-
-app.post('/devicestate', (req, res) => {
-    const deviceID= req.body.deviceID
-    console.log('Device with device ID: '+deviceID+' connected')
-    const db= mongoUtil.getDb()
-
-    db.collection('devices').find({device_id: deviceID}).toArray((err, result) => {
-        const pinValues= result[0].device_pin_values
-        return res.send(pinValues)
     })
 })
 
