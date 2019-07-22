@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
 const bcrypt= require('bcryptjs')
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 6000
 
 const mongoUtil = require('./public/js/application/mongoutils.js')
 const app = express()
@@ -148,10 +148,9 @@ app.post('/devicestate', (req, res) => {
     console.log('Device with device ID: '+deviceID+' connected')
     const db= mongoUtil.getDb()
 
-    db.collection('devices').find({device_id: deviceID}, (err, res) => {
-        const pinValues= res.device_pin_values
-        console.log('Pinvalues of device with device ID: '+deviceID+' is : '+pinValues)
-        res.send(pinValues.toString())
+    db.collection('devices').find({device_id: deviceID}).toArray((err, result) => {
+        const pinValues= result[0].device_pin_values
+        res.send(pinValues)
     })
 })
 
