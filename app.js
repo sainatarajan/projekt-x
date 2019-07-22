@@ -118,10 +118,6 @@ app.post('/userState', async (req, res) => {
     var jsonObj= "{"
     
     const cursor= db.collection('devices').find({"user_id": ObjectID(userID)}).toArray((err, result) => res.send(result))
-    // while(await cursor.hasNext()) {
-    //     jsonObj+= cursor.next()
-    // }
-    // console.log("jsonObj : "+ jsonObj)
 })
 
 app.get('/logout', (req, res) => {
@@ -144,6 +140,16 @@ app.post('/register', (req, res) => {
         else {
             registerUser(email, password)
         }
+    })
+})
+
+app.post('/devicestate', (req, res) => {
+    const deviceID= req.body.deviceID
+    const db= mongoUtil.getDb()
+
+    db.collection('devices').find({device_id: deviceID}, (err, res) => {
+        const pinValues= res.device_pin_values
+        res.send(pinValues.toString())
     })
 })
 
