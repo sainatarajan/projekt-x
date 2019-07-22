@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
 const bcrypt= require('bcryptjs')
 
-const port = process.env.PORT || 6000
+const port = process.env.PORT || 5000
 
 const mongoUtil = require('./public/js/application/mongoutils.js')
 const app = express()
