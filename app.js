@@ -145,10 +145,12 @@ app.post('/register', (req, res) => {
 
 app.post('/devicestate', (req, res) => {
     const deviceID= req.body.deviceID
+    console.log('Device with device ID: '+deviceID+' connected')
     const db= mongoUtil.getDb()
 
     db.collection('devices').find({device_id: deviceID}, (err, res) => {
         const pinValues= res.device_pin_values
+        console.log('Pinvalues of device with device ID: '+deviceID+' is : '+pinValues)
         res.send(pinValues.toString())
     })
 })
