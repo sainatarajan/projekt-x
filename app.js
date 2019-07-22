@@ -113,9 +113,10 @@ app.post('/validateUser', (req, res) => {
 })
 
 app.post('/deviceState', (req, res) => {
+    console.log(req.body)
     const deviceID= req.body.deviceID
     const db= mongoUtil.getDb()
-
+    console.log(deviceID)
     db.collection('devices').findOne({device_id: deviceID}).then((device) => {
         const pinValues= device.device_pin_values
         return res.send(pinValues)
