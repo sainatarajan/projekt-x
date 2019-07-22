@@ -22,15 +22,15 @@
 			<h1>ProjektX</h1>
 		</div>
 		<div class="login-box">
-			<form class="login-form" action="dashboard.html">
+			<form class="login-form" action="/validateUser" method="POST">
 				<h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
 				<div class="form-group">
-					<label class="control-label">USERNAME</label>
-					<input id="email" class="form-control" type="text" placeholder="Email" autofocus>
+					<label class="control-label">EMAIL</label>
+					<input id="email" class="form-control" name="email" type="text" placeholder="Email" autofocus>
 				</div>
 				<div class="form-group">
 					<label class="control-label">PASSWORD</label>
-					<input id="password" class="form-control" type="password" placeholder="Password">
+					<input id="password" class="form-control" name= "password" type="password" placeholder="Password">
 				</div>
 				<div class="form-group">
 					<div class="utility">
@@ -58,7 +58,7 @@
 	<!-- Essential javascripts for application to work-->
 	<script src="js/shared/jquery-3.2.1.min.js"></script>
 	<script src="js/shared/sweetalert.min.js"></script>
-	<script src="js/application/login.js"></script>
+	<!-- <script src="js/application/login.js"></script> -->
 </body>
 
 </html>

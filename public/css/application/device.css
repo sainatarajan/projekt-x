@@ -1,0 +1,79 @@
+body {
+    background: #E5E5E5;
+  }
+
+  .device-container {
+    background: #FFFFFF;
+    width: 540px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 10%;
+    box-shadow: 2px 5px 20px rgba(119, 119, 119, 0.5);
+  }
+
+  .leftbox {
+    float: left;
+    left: 5%;
+    position: absolute;
+    width: 15%;
+    height: 90%;
+    /* background: #22195b;
+    box-shadow: 3px 3px 10px rgba(119, 119, 119, 0.5); */
+  }
+
+  nav a {
+    list-style: none;
+    padding: 35px;
+    color: #FFFFFF;
+    font-size: 1.1em;
+    display: block;
+    transition: all .3s ease-in-out;
+  }
+
+  nav a:hover {
+    color: #3FB6A8;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+
+  nav a:first-child {
+    margin-top: 7px;
+  }
+
+  .active {
+    color: #3FB6A8;
+  }
+
+  .rightbox {
+    float: right;
+    width: 60%;
+    height: 100%;
+  }
+
+  .profile,
+  .payment,
+  .subscription,
+  .privacy,
+  .settings {
+    transition: opacity .5s ease-in;
+    position: absolute;
+    width: 70%;
+  }
+
+  .privacy h2 {
+    margin-top: 25px;
+  }
+
+  .settings h2 {
+    margin-top: 25px;
+  }
+
+  .noshow {
+    opacity: 0;
+  }
+  .app-menu__icon {
+  border-left-color: #22195b;
+  text-decoration: none;
+  color: #fff;
+  }
