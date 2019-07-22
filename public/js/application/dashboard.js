@@ -1,7 +1,7 @@
 window.onload= init
 
 function init() {
-    loadStateFromDatabase()
+    setInterval(loadStateFromDatabase, 2000)
 }
 
 function loadStateFromDatabase() {
@@ -34,5 +34,5 @@ function loadGUIState(data) {
 }
 
 function addEventListeners(data) {
-
+    
 }
