@@ -114,7 +114,6 @@ app.post('/validateUser', (req, res) => {
 
 app.post('/deviceState', (req, res) => {
     const deviceID= req.body.deviceID
-    console.log('Device with device ID: '+deviceID+' connected')
     const db= mongoUtil.getDb()
 
     db.collection('devices').findOne({device_id: deviceID}).then((device) => {
@@ -127,9 +126,6 @@ app.post('/changeDeviceState', (req, res) => {
     var userID= req.body.userID
     var deviceID= req.body.deviceID
     var values= req.body.values
-    console.log(userID)
-    console.log(deviceID)
-    console.log(values)
     const db= mongoUtil.getDb()
 
     db.collection('devices').updateOne({user_id: ObjectID(userID), device_id: deviceID}, {$set: {"device_pin_values": values}}).then((err, res) => {
