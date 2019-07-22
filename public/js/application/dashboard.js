@@ -1,8 +1,7 @@
 window.onload= init
 
 function init() {
-    //setInterval(loadStateFromDatabase, 1000)
-    loadStateFromDatabase()
+    setInterval(loadStateFromDatabase, 1500)
 }
 
 function loadStateFromDatabase() {
