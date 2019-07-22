@@ -117,8 +117,8 @@ app.post('/deviceState', (req, res) => {
     console.log('Device with device ID: '+deviceID+' connected')
     const db= mongoUtil.getDb()
 
-    db.collection('devices').findOne({device_id: deviceID}, (err, result) => {
-        const pinValues= result.device_pin_values
+    db.collection('devices').findOne({device_id: deviceID}).then((device) => {
+        const pinValues= device.device_pin_values
         return res.send(pinValues)
     })
 })
