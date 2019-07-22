@@ -48,6 +48,7 @@ function addEventListeners(data) {
 
     $('.flip-indecator').click(function () {
         var clas= $(this).prev().attr('class')
+        var relaypin= clas.slice(-1)
         var deviceID= clas.slice(0, -1)
         var value= $(this).prev().prop("checked")? 0:1
 
@@ -55,8 +56,11 @@ function addEventListeners(data) {
             url: '/deviceState',
             type: 'post',
             data: {deviceID},
-            success: (date) => {
-                
+            success: (data) => {
+                alert(data)
+                data[relaypin-1]= value
+                alert(data)
+                //changeDeviceState(userID, deviceID, )
             }
         })
 
