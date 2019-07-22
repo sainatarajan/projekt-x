@@ -150,7 +150,7 @@ app.post('/devicestate', (req, res) => {
 
     db.collection('devices').find({device_id: deviceID}).toArray((err, result) => {
         const pinValues= result[0].device_pin_values
-        res.send(pinValues)
+        return res.send(pinValues)
     })
 })
 
