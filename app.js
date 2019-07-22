@@ -123,6 +123,19 @@ app.post('/deviceState', (req, res) => {
     })
 })
 
+app.post('/changeDeviceState', (req, res) => {
+    var userID= req.body.userID
+    var deviceID= req.body.deviceID
+    var values= req.body.values
+    console.log(userID)
+    console.log(deviceID)
+    console.log(values)
+    const db= mongoUtil.getDb()
+
+    db.collection('devices').updateOne({user_id: ObjectID(userID), device_id: deviceID}, {$set: {"device_pin_values": values}}).then((err, res) => {
+    })
+})
+
 app.post('/userState', async (req, res) => {
     var userID =req.body.userID
     const db = mongoUtil.getDb();
