@@ -1,7 +1,7 @@
 window.onload= init
 
 function init() {
-    setInterval(loadStateFromDatabase, 1500)
+    loadStateFromDatabase()
 }
 
 function loadStateFromDatabase() {
@@ -11,6 +11,9 @@ function loadStateFromDatabase() {
         data: {userID},
         success: (data) => {
             loadGUIState(data)
+        },
+        complete: () => {
+            setTimeout(loadStateFromDatabase, 1500)
         }
     })
 }
